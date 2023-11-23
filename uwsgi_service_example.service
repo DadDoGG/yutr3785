@@ -1,0 +1,15 @@
+[Unit]
+
+Description=uWsgi Service
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/uwsgi --ini /path/to/wsgi.ini
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/bin/kill -INT $MAINPID
+Restart=always
+Type=notify
+NotifyAccess=all
+
+[Install]
+WandtedBy=multi-user.target
